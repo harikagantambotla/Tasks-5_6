@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day5-Task</title>
+</head>
+<body>
+    <script>
+
+function spotlightMap(grid) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const result = [];
+
+  // Helper function to get the sum of adjacent elements
+  function getAdjacentSum(row, col) {
+    let sum = 0;
+    for (let i = row - 1; i <= row + 1; i++) {
+      for (let j = col - 1; j <= col + 1; j++) {
+        if (i >= 0 && i < rows && j >= 0 && j < cols) {
+          sum += grid[i][j];
+        }
+      }
+    }
+    return sum;
+  }
+
+  // Calculate the Spotlight Sum for each element in the grid
+  for (let i = 0; i < rows; i++) {
+    result.push([]);
+    for (let j = 0; j < cols; j++) {
+      const spotlightSum = getAdjacentSum(i, j);
+      result[i].push(spotlightSum);
+    }
+  }
+
+  return result;
+}
+
+// Input grid
+const grid = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+// Calculate the Spotlight Sum for the input grid
+const spotlightSumGrid = spotlightMap(grid);
+
+console.log(spotlightSumGrid);
+
+    </script>
+    
+</body>
+</html>

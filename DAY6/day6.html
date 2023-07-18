@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day6-Task</title>
+</head>
+<body>
+    <script>
+
+function groupSeats(seatingArrangement, n) {
+  const rows = seatingArrangement.length;
+  const cols = seatingArrangement[0].length;
+  let count = 0;
+
+  // Helper function to check if there are n consecutive vacant seats in a row
+  function hasNConsecutiveVacantSeats(row) {
+    let consecutiveVacantSeats = 0;
+    for (let seat of row) {
+      if (seat === 0) {
+        consecutiveVacantSeats++;
+        if (consecutiveVacantSeats === n) {
+          return true;
+        }
+      } else {
+        consecutiveVacantSeats = 0;
+      }
+    }
+    return false;
+  }
+
+  // Iterate through each row of the seating arrangement
+  for (let i = 0; i < rows; i++) {
+    if (hasNConsecutiveVacantSeats(seatingArrangement[i])) {
+      count++;
+    }
+  }
+
+  return count;
+}
+
+// Test case
+const seatingArrangement = [
+  [1, 0, 1, 0, 1, 0, 1],
+  [0, 1, 0, 1, 0, 1, 0],
+  [0, 0, 1, 1, 1, 1, 1],
+  [1, 0, 1, 1, 0, 0, 1],
+  [1, 1, 1, 0, 1, 0, 1],
+  [0, 1, 1, 1, 1, 0, 0]
+];
+const n = 2;
+const availableOptions = groupSeats(seatingArrangement, n);
+console.log("Available seating options:", availableOptions);
+
+     
+
+        
+    </script>
+    
+</body>
+</html>
